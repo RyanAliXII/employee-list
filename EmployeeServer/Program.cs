@@ -12,6 +12,15 @@ builder.Services.AddControllers(options=>{
     options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
     options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
 });
+var requestOrigin = "SPA";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: requestOrigin,
+    policy  =>
+    {
+        policy.WithOrigins("http://localhost:5173");
+    });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -26,7 +35,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseCors(requestOrigin);
 app.UseAuthorization();
 
 app.MapControllerRoute(

@@ -9,6 +9,7 @@ import {
   Button,
 } from "flowbite-react";
 import useForm from "../../hooks/useForm";
+import { FormEvent } from "react";
 
 export const Route = createLazyFileRoute("/employees/create")({
   component: CreateEmployee,
@@ -29,11 +30,23 @@ export function CreateEmployee() {
       email: "",
     },
   });
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const response = await fetch("http://localhost:5171/api/employees", {
+      method: "POST",
+      body: JSON.stringify(form),
+    });
+    if (response.status === 200) {
+      alert("success!");
+      return;
+    }
+    alert("error!");
+  };
 
   return (
     <Card className="max-w-6xl mx-auto mt-10">
       <h1 className="font-bold text-2xl">New Employee</h1>
-      <form>
+      <form onSubmit={onSubmit}>
         <div className="py-5">
           <h2 className="text-lg font-medium">Personal Information</h2>
           <HR className="my-0"></HR>
