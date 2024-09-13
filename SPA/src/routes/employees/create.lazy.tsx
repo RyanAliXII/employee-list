@@ -35,6 +35,7 @@ export function CreateEmployee() {
     const response = await fetch("http://localhost:5171/api/employees", {
       method: "POST",
       body: JSON.stringify(form),
+      headers: new Headers({ "Content-Type": "application/json" }),
     });
     if (response.status === 200) {
       alert("success!");

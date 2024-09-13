@@ -1,20 +1,25 @@
+using EmployeeServer.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeServer.Controllers;
 
 public class EmployeeController : Controller{
-    [HttpGet]
+    protected ILogger<EmployeeController> _logger;
+    public EmployeeController(ILogger<EmployeeController> logger){
+        _logger = logger;
+    }
     [Route("/api/employees/")]
-    public IActionResult Create(){
+    public IActionResult Index(){
         return Json(new {
            employees = Array.Empty<object>()
         });
     }
     [HttpPost]
     [Route("/api/employees/")]
-    public IActionResult Index(){
+    public IActionResult Create([FromBody]EmployeeViewModel employeeVM){
+        _logger.LogInformation(employeeVM.GivenName);
         return Json(new {
-           employees = Array.Empty<object>()
+           employee = employeeVM,
         });
     }
     [HttpPut]

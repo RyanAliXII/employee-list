@@ -19,7 +19,7 @@ public class EmployeeViewModel{
     [JsonPropertyName("dateOfBirth")]
     [Required(ErrorMessage = "Date of birth is required")]
     [DataType(DataType.Date)]
-    public DateTime DateOfBirth { get; set; }
+    public DateTime? DateOfBirth { get; set; }
 
     [JsonPropertyName("address")]
     [Required(ErrorMessage = "Address is required")]
