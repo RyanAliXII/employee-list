@@ -23,9 +23,9 @@ export function EditEmployee() {
       surname: "",
       dateOfBirth: "",
       address: "",
-      SSNumber: "",
-      TIN: "",
-      MIDNumber: "",
+      ssNumber: "",
+      tin: "",
+      midNumber: "",
       philhealthNumber: "",
       email: "",
       mobileNumber: "",
@@ -93,20 +93,25 @@ export function EditEmployee() {
             <TextInput
               onChange={handleInput}
               name="SSNumber"
-              value={form.SSNumber}
+              value={form.ssNumber}
               color="primary"
             ></TextInput>
           </div>
           <div>
             <Label>TIN</Label>
-            <TextInput onChange={handleInput} color="primary"></TextInput>
+            <TextInput
+              onChange={handleInput}
+              name="SSNumber"
+              value={form.ssNumber}
+              color="primary"
+            ></TextInput>
           </div>
           <div>
             <Label>MID number(Pag-Ibig)</Label>
             <TextInput
               onChange={handleInput}
               name="MIDNumber"
-              value={form.MIDNumber}
+              value={form.midNumber}
               color="primary"
             ></TextInput>
           </div>

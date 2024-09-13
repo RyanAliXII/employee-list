@@ -21,9 +21,9 @@ export function CreateEmployee() {
       surname: "",
       dateOfBirth: "",
       address: "",
-      SSNumber: "",
-      TIN: "",
-      MIDNumber: "",
+      ssNumber: "",
+      tin: "",
+      midNumber: "",
       philhealthNumber: "",
       mobileNumber: "",
       email: "",
@@ -91,20 +91,25 @@ export function CreateEmployee() {
             <TextInput
               onChange={handleInput}
               name="SSNumber"
-              value={form.SSNumber}
+              value={form.ssNumber}
               color="primary"
             ></TextInput>
           </div>
           <div>
             <Label>TIN</Label>
-            <TextInput onChange={handleInput} color="primary"></TextInput>
+            <TextInput
+              onChange={handleInput}
+              name="tin"
+              value={form.tin}
+              color="primary"
+            ></TextInput>
           </div>
           <div>
             <Label>MID number(Pag-Ibig)</Label>
             <TextInput
               onChange={handleInput}
               name="MIDNumber"
-              value={form.MIDNumber}
+              value={form.midNumber}
               color="primary"
             ></TextInput>
           </div>
