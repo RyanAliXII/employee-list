@@ -2,7 +2,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EmployeeServer.ViewModels;
 
-
 public class EmployeeViewModel{
 
     [Required(ErrorMessage = "Given name is required")]
