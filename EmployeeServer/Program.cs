@@ -12,13 +12,15 @@ builder.Services.AddControllers(options=>{
     options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
     options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
 });
-var requestOrigin = "SPA";
+//configure cors to accept request from specific origin and allow specific headers
+var corsPolicyName = "FrontEndCors";
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: requestOrigin,
+    options.AddPolicy(name: corsPolicyName,
     policy  =>
     {
         policy.WithOrigins("http://localhost:5173");
+        policy.WithHeaders("Content-Type");
     });
 });
 var app = builder.Build();
@@ -35,7 +37,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseCors(requestOrigin);
+app.UseCors(corsPolicyName);
 app.UseAuthorization();
 
 app.MapControllerRoute(
