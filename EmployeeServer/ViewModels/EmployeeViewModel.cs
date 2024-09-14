@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using EmployeeServer.Models;
 
 namespace EmployeeServer.ViewModels;
 
@@ -49,5 +50,4 @@ public class EmployeeViewModel{
     [Required(ErrorMessage = "Email is required")]
     [EmailAddress(ErrorMessage = "Invalid email address")]
     public string? Email { get; set; }
-
 }

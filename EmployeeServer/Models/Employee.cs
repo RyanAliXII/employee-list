@@ -1,6 +1,7 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using EmployeeServer.ViewModels;
 
 namespace EmployeeServer.Models;
@@ -26,6 +27,7 @@ public class Employee {
 
     public string MIDNumber { get; set; } = string.Empty;
 
+    [JsonPropertyName("philhealthNumber")]
     public string PhilHealthNumber { get; set; } = string.Empty;
 
     public string MobileNumber { get; set; } = string.Empty;

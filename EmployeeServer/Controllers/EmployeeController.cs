@@ -16,11 +16,14 @@ public class EmployeeController : Controller{
     }
     [Route("/api/employees/")]
     public IActionResult Index(){
-        return Json(new {
-           employees = Array.Empty<object>()
+        var employees = _employeeRepo.GetEmployeesOrderedByCreatedAtDesc();
+        return Ok(new {
+           status = StatusCodes.Status200OK,
+           employees,
+           details = "Employees fetched."
         });
     }
-    [HttpPost]
+    [HttpPost] 
     [Route("/api/employees/")]
     public async Task<IActionResult> Create([FromBody]EmployeeViewModel employeeVM){
      try{
