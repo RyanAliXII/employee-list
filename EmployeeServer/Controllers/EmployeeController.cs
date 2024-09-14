@@ -119,4 +119,8 @@ public class EmployeeController : Controller{
         }
         
     }
+
+    protected void ValidateUniqueFieldOnCreate(){
+
+    }
 }

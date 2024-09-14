@@ -7,7 +7,6 @@ public class EmployeeRepository(AppDbContext dbContext) : EFRepository<Employee>
     public IEnumerable<Employee> GetEmployeesOrderedByCreatedAtDesc(){
         return _dbContext.Employee.OrderByDescending(emp=> emp.CreatedAt);
     }
-         
 }
 public interface IEmployeeRepository: IRepository<Employee>{
     public IEnumerable<Employee> GetEmployeesOrderedByCreatedAtDesc();
