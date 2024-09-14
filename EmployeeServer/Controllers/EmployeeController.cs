@@ -41,6 +41,7 @@ public class EmployeeController : Controller{
     [Route("/api/employees/")]
     public async Task<IActionResult> Create([FromBody]EmployeeViewModel employeeVM){
         try{
+            await ValidateUniqueFieldsOnCreate(employeeVM);
             if(!ModelState.IsValid){
             return BadRequest(new {
                 status = StatusCodes.Status400BadRequest,
@@ -66,11 +67,12 @@ public class EmployeeController : Controller{
     }
     [HttpPut]
     [Route("/api/employees/{id?}/")]
-    public async Task<IActionResult> Update(Guid id, [FromBody]EmployeeViewModel employeeVM){
+    public async Task<IActionResult> Update([FromBody]EmployeeViewModel employeeVM, Guid id){
         try{
             if(id == Guid.Empty){
                 return NotFound(new{status = StatusCodes.Status404NotFound, details="Record not found."});
             }
+            await ValidateUniqueFieldOnUpdate(employeeVM, id);
             if(!ModelState.IsValid){
                 return BadRequest(new {
                 status = StatusCodes.Status400BadRequest,
@@ -119,8 +121,66 @@ public class EmployeeController : Controller{
         }
         
     }
-
-    protected void ValidateUniqueFieldOnCreate(){
-
+    protected async Task ValidateUniqueFieldsOnCreate(EmployeeViewModel employeeVM)
+    {
+        /*
+            Validate unique fields.
+            I dont know where put this long ass lines of code.
+        */
+        if (!string.IsNullOrEmpty(employeeVM.Email) && await _employeeRepo.IsEmailExistsAsync(employeeVM.Email))
+        {
+            ModelState.AddModelError(nameof(employeeVM.Email), "Email already exists.");
+        }
+        if (!string.IsNullOrEmpty(employeeVM.SSNumber) && await _employeeRepo.IsSSNumberExistsAsync(employeeVM.SSNumber))
+        {
+            ModelState.AddModelError(nameof(employeeVM.SSNumber), "SS Number already exists.");
+        }
+        if (!string.IsNullOrEmpty(employeeVM.TIN) && await _employeeRepo.IsTINExistsAsync(employeeVM.TIN))
+        {
+            ModelState.AddModelError(nameof(employeeVM.TIN), "TIN already exists.");
+        }
+        if (!string.IsNullOrEmpty(employeeVM.MIDNumber) && await _employeeRepo.IsMIDNumberExistsAsync(employeeVM.MIDNumber))
+        {
+            ModelState.AddModelError(nameof(employeeVM.MIDNumber), "MID Number already exists.");
+        }
+        if (!string.IsNullOrEmpty(employeeVM.PhilHealthNumber) && await _employeeRepo.IsPhilHealthNumberExistsAsync(employeeVM.PhilHealthNumber))
+        {
+            ModelState.AddModelError("philhealthNumber", "PhilHealth Number already exists.");
+        }
+        if (!string.IsNullOrEmpty(employeeVM.MobileNumber) && await _employeeRepo.IsMobileNumberExistsAsync(employeeVM.MobileNumber))
+        {
+            ModelState.AddModelError(nameof(employeeVM.MobileNumber), "Mobile number already exists.");
+        }
     }
+    protected async Task ValidateUniqueFieldOnUpdate(EmployeeViewModel employeeVM, Guid id){
+        /*
+            Validate unique fields for current existing employee.
+            I dont know where put this long ass lines of code.
+        */
+        if (!string.IsNullOrEmpty(employeeVM.Email) && await _employeeRepo.IsEmailForCurrentEmployeeAsync(employeeVM.Email, id))
+        {
+            ModelState.AddModelError(nameof(employeeVM.Email), "Email already exists.");
+        }
+        if (!string.IsNullOrEmpty(employeeVM.SSNumber) && await _employeeRepo.IsSSNumberForCurrentEmployeeAsync(employeeVM.SSNumber, id))
+        {
+            ModelState.AddModelError(nameof(employeeVM.SSNumber), "SS Number already exists.");
+        }
+        if (!string.IsNullOrEmpty(employeeVM.TIN) && await _employeeRepo.IsTINForCurrentEmployeeAsync(employeeVM.TIN, id))
+        {
+            ModelState.AddModelError(nameof(employeeVM.TIN), "TIN already exists.");
+        }
+        if (!string.IsNullOrEmpty(employeeVM.MIDNumber) && await _employeeRepo.IsMIDNumberForCurrentEmployeeAsync(employeeVM.MIDNumber, id))
+        {
+            ModelState.AddModelError(nameof(employeeVM.MIDNumber), "MID Number already exists.");
+        }
+        if (!string.IsNullOrEmpty(employeeVM.PhilHealthNumber) && await _employeeRepo.IsPhilHealthNumberForCurrentEmployeeAsync(employeeVM.PhilHealthNumber, id))
+        {
+            ModelState.AddModelError("philhealthNumber", "PhilHealth Number already exists.");
+        }
+        if (!string.IsNullOrEmpty(employeeVM.MobileNumber) && await _employeeRepo.IsMobileNumberForCurrentEmployeeAsync(employeeVM.MobileNumber, id))
+        {
+            ModelState.AddModelError(nameof(employeeVM.MobileNumber), "Mobile number already exists.");
+        }
+    }
+
 }
