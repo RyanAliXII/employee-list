@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\RYAN\\Documents\\Projects\\employee-list\\EmployeeServer\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E104C721-0040-486F-933F-D6900B6CFACF}|..\\EmployeeServerTest\\EmployeeServerTest.csproj|c:\\users\\ryan\\documents\\projects\\employee-list\\employeeservertest\\employeecontrollertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60D9FC15-1DC0-42F5-854A-28B59D1210A6}|EmployeeServer.csproj|c:\\users\\ryan\\documents\\projects\\employee-list\\employeeserver\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{60D9FC15-1DC0-42F5-854A-28B59D1210A6}|EmployeeServer.csproj|solutionrelative:controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "C:\\Users\\RYAN\\Documents\\Projects\\employee-list\\EmployeeServer\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\EmployeeController.cs",
+              "ToolTip": "C:\\Users\\RYAN\\Documents\\Projects\\employee-list\\EmployeeServer\\Controllers\\EmployeeController.cs",
+              "RelativeToolTip": "Controllers\\EmployeeController.cs",
+              "ViewState": "AQIAAFgAAAAAAAAAAAAcwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-14T20:17:17.286Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EmployeeControllerTest.cs",
+              "DocumentMoniker": "C:\\Users\\RYAN\\Documents\\Projects\\employee-list\\EmployeeServerTest\\EmployeeControllerTest.cs",
+              "RelativeDocumentMoniker": "..\\EmployeeServerTest\\EmployeeControllerTest.cs",
+              "ToolTip": "C:\\Users\\RYAN\\Documents\\Projects\\employee-list\\EmployeeServerTest\\EmployeeControllerTest.cs",
+              "RelativeToolTip": "..\\EmployeeServerTest\\EmployeeControllerTest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-14T20:01:37.342Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
