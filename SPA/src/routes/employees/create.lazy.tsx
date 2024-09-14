@@ -10,17 +10,21 @@ import {
 } from "flowbite-react";
 import useForm from "../../hooks/useForm";
 import { FormEvent } from "react";
-
+import { InferType } from "yup";
+import { employeeSchema } from "../../schema/employee";
+import { useCreateEmployee } from "../../hooks/data/useCreateEmployee";
 export const Route = createLazyFileRoute("/employees/create")({
   component: CreateEmployee,
 });
 export function CreateEmployee() {
-  const { form, handleInput } = useForm({
+  const { form, handleInput, setForm } = useForm<
+    InferType<typeof employeeSchema>
+  >({
     initialData: {
       givenName: "",
       middleName: "",
       surname: "",
-      dateOfBirth: "",
+      dateOfBirth: null,
       address: "",
       ssNumber: "",
       tin: "",
@@ -30,18 +34,19 @@ export function CreateEmployee() {
       email: "",
     },
   });
+
+  const handleDateOfBirth = (date: Date) => {
+    setForm((prev) => ({ ...prev, dateOfBirth: date }));
+  };
+  const { mutate } = useCreateEmployee();
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const response = await fetch("http://localhost:5171/api/employees", {
-      method: "POST",
-      body: JSON.stringify(form),
-      headers: new Headers({ "content-type": "application/json" }),
-    });
+    const response = await mutate(form);
     if (response.status === 200) {
       alert("success!");
-      return;
+    } else {
+      alert("error!");
     }
-    alert("error!");
   };
 
   return (
@@ -83,7 +88,10 @@ export function CreateEmployee() {
 
           <div>
             <Label>Date of birth</Label>
-            <Datepicker color="primary"></Datepicker>
+            <Datepicker
+              color="primary"
+              onSelectedDateChanged={handleDateOfBirth}
+            ></Datepicker>
           </div>
           <div className="md:col-span-2 lg:col-span-3">
             <Label>Address</Label>
