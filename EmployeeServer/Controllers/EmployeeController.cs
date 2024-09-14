@@ -106,6 +106,7 @@ public class EmployeeController : Controller{
                return NotFound(new{status = StatusCodes.Status404NotFound, details="Record not found."});
             }
             await _employeeRepo.DeleteAsync(id);
+            await _employeeRepo.SaveAsync();
             return Ok(new {
                 status = StatusCodes.Status200OK,
                 details = "Employee deleted."

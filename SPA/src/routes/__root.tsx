@@ -1,7 +1,7 @@
-import { createRootRoute, Outlet } from "@tanstack/react-router";
+import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { Navbar } from "flowbite-react";
-
+import { ToastContainer } from "react-toastify";
 export const Route = createRootRoute({
   component: () => (
     <>
@@ -13,11 +13,16 @@ export const Route = createRootRoute({
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="mr-10">
-          <Navbar.Link href="#">Employees</Navbar.Link>
-          <Navbar.Link href="#">Create</Navbar.Link>
+          <Navbar.Link as={Link} to={"/employees"}>
+            Employees
+          </Navbar.Link>
+          <Navbar.Link as={Link} to={"/employees/create"}>
+            Create
+          </Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
       <Outlet />
+      <ToastContainer />
       <TanStackRouterDevtools />
     </>
   ),
