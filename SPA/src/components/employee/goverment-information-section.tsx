@@ -1,13 +1,13 @@
 import { Label, TextInput } from "flowbite-react";
 import { InferType } from "yup";
-import { createEmployeeSchema } from "../../schema/employee";
+import { mutateEmployeeSchema } from "../../schema/employee";
 import { UseForm } from "../../hooks/use-form";
 
 function GovernmentIndataationdataSection({
   data,
   errors,
   handleInput,
-}: UseForm<InferType<typeof createEmployeeSchema>>) {
+}: UseForm<InferType<typeof mutateEmployeeSchema>>) {
   return (
     <section className="grid md:grid-cols-2 gap-2 lg:grid-cols-3">
       <div>

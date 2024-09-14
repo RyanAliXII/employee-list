@@ -1,4 +1,4 @@
-import { createLazyFileRoute } from "@tanstack/react-router";
+import { createLazyFileRoute, Link } from "@tanstack/react-router";
 import { Button, Card, Table } from "flowbite-react";
 import { useEmployees } from "../../hooks/data/use-employees";
 
@@ -30,7 +30,12 @@ function Employees() {
                   <Table.Cell>{employee.email}</Table.Cell>
                   <Table.Cell>
                     <div className="flex gap-1">
-                      <Button color="light" outline>
+                      <Button
+                        as={Link}
+                        color="light"
+                        outline
+                        to={`/employees/${employee.id}/edit`}
+                      >
                         Edit
                       </Button>
                       <Button color="light" outline>

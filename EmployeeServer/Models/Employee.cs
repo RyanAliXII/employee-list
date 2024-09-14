@@ -51,6 +51,20 @@ public class Employee {
         PhilHealthNumber = employeeVM.PhilHealthNumber ?? string.Empty;
         MobileNumber = employeeVM.MobileNumber ?? string.Empty;
         Email = employeeVM.Email ?? string.Empty;
-        // Note: CreatedAt should not be set by the view model, it should be set by the system.
+     // Note: CreatedAt should not be set by the view model, it should be set by the database.
+    }
+     public void Update(EmployeeViewModel employeeVM){
+        GivenName = employeeVM.GivenName ?? string.Empty;
+        MiddleName = employeeVM.MiddleName;
+        Surname = employeeVM.Surname ?? string.Empty;
+        DateOfBirth = employeeVM.DateOfBirth ?? DateTime.MinValue;
+        Address = employeeVM.Address ?? string.Empty;
+        SSNumber = employeeVM.SSNumber ?? string.Empty;
+        TIN = employeeVM.TIN ?? string.Empty;
+        MIDNumber = employeeVM.MIDNumber ?? string.Empty;
+        PhilHealthNumber = employeeVM.PhilHealthNumber ?? string.Empty;
+        MobileNumber = employeeVM.MobileNumber ?? string.Empty;
+        Email = employeeVM.Email ?? string.Empty;
+        // Note: CreatedAt should not be set by the view model, it should be set by the database.
     }
 }

@@ -3,7 +3,7 @@ import { HR, Card, Button } from "flowbite-react";
 import useForm from "../../hooks/use-form";
 import { FormEvent } from "react";
 import { InferType } from "yup";
-import { createEmployeeSchema } from "../../schema/employee";
+import { mutateEmployeeSchema } from "../../schema/employee";
 import { useCreateEmployee } from "../../hooks/data/use-create-employee";
 import { StatusCodes } from "http-status-codes";
 import PersonalInformationFormSection from "../../components/employee/personal-information-section";
@@ -13,7 +13,7 @@ export const Route = createLazyFileRoute("/employees/create")({
   component: CreateEmployee,
 });
 export function CreateEmployee() {
-  const form = useForm<InferType<typeof createEmployeeSchema>>({
+  const form = useForm<InferType<typeof mutateEmployeeSchema>>({
     initialData: {
       givenName: "",
       middleName: "",

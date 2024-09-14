@@ -1,13 +1,14 @@
 import { Datepicker, Label, Textarea, TextInput } from "flowbite-react";
 import { UseForm } from "../../hooks/use-form";
 import { InferType } from "yup";
-import { createEmployeeSchema } from "../../schema/employee";
+import { mutateEmployeeSchema } from "../../schema/employee";
+import { toReadableDate } from "../../utils/date";
 function PersonalInformationFormSection({
   data,
   handleInput,
   errors,
   setData,
-}: UseForm<InferType<typeof createEmployeeSchema>>) {
+}: UseForm<InferType<typeof mutateEmployeeSchema>>) {
   const handleDateOfBirth = (date: Date) => {
     setData((prev) => ({ ...prev, dateOfBirth: date }));
   };
@@ -47,6 +48,7 @@ function PersonalInformationFormSection({
       <div>
         <Label>Date of birth</Label>
         <Datepicker
+          value={toReadableDate(data.dateOfBirth)}
           color={errors?.dateOfBirth ? "failure" : "primary"}
           onSelectedDateChanged={handleDateOfBirth}
         ></Datepicker>
