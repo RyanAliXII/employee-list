@@ -8,7 +8,7 @@ import {
   Textarea,
   TextInput,
 } from "flowbite-react";
-import useForm from "../../../hooks/useForm";
+import useForm from "../../../hooks/use-form";
 
 export const Route = createLazyFileRoute("/employees/$id/edit")({
   component: EditEmployee,
