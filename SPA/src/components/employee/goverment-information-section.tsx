@@ -14,7 +14,7 @@ function GovernmentIndataationdataSection({
         <Label>SS number</Label>
         <TextInput
           onChange={handleInput}
-          name="SSNumber"
+          name="ssNumber"
           value={data.ssNumber}
           color={errors?.ssNumber ? "failure" : "primary"}
         ></TextInput>
@@ -34,7 +34,7 @@ function GovernmentIndataationdataSection({
         <Label>MID number(Pag-Ibig)</Label>
         <TextInput
           onChange={handleInput}
-          name="MIDNumber"
+          name="midNumber"
           value={data.midNumber}
           color={errors?.midNumber ? "failure" : "primary"}
         ></TextInput>

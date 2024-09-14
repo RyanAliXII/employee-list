@@ -12,6 +12,8 @@ export type UseForm<T> = {
   handleInput: (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
+  resetForm: () => void;
+  removeErrors: () => void;
 };
 const useForm = <T extends Record<string, unknown> | unknown[]>({
   initialData,
@@ -25,12 +27,18 @@ const useForm = <T extends Record<string, unknown> | unknown[]>({
     const value = event.target.value;
     setData((prev) => ({ ...prev, [name]: value }));
   };
+  const resetForm = () => {
+    setData({ ...initialData });
+  };
+  const removeErrors = () => [setErrors({})];
   return {
     data,
     setData,
     errors,
     setErrors,
     handleInput,
+    resetForm,
+    removeErrors,
   };
 };
 

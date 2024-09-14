@@ -1,5 +1,6 @@
 using System.Net;
 using EmployeeServer.Extensions;
+using EmployeeServer.Models;
 using EmployeeServer.Repositories;
 using EmployeeServer.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -21,17 +22,30 @@ public class EmployeeController : Controller{
     }
     [HttpPost]
     [Route("/api/employees/")]
-    public IActionResult Create([FromBody]EmployeeViewModel employeeVM){
-
+    public async Task<IActionResult> Create([FromBody]EmployeeViewModel employeeVM){
+     try{
         if(!ModelState.IsValid){
            return BadRequest(new {
               status = HttpStatusCode.BadRequest,
-              errors = ModelState.ToValidationErrors()
+              errors = ModelState.ToValidationErrors(),
+              details = "One or more fields have validation errors."
            });
         }
-        return Json(new {
-           employee = employeeVM,
+       var employee = await _employeeRepo.CreateAsync(new Employee(employeeVM)); 
+       await _employeeRepo.SaveAsync();
+       return Ok(new {
+            status = StatusCodes.Status400BadRequest,
+            employee,
+            details = "Employee created."
+       });
+     }
+     catch(Exception error){
+        _logger.LogError("{Message} {StackTrace}", error.Message, error.StackTrace);
+        return StatusCode(StatusCodes.Status500InternalServerError, new {
+            status =  StatusCodes.Status500InternalServerError,
+            details = "Unknown error occured."
         });
+      }
     }
     [HttpPut]
     [Route("/api/employees/{id?}/")]

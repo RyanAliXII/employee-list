@@ -4,7 +4,7 @@ import useForm from "../../hooks/use-form";
 import { FormEvent } from "react";
 import { InferType } from "yup";
 import { employeeSchema } from "../../schema/employee";
-import { useCreateEmployee } from "../../hooks/data/useCreateEmployee";
+import { useCreateEmployee } from "../../hooks/data/use-create-employee";
 import { StatusCodes } from "http-status-codes";
 import PersonalInformationFormSection from "../../components/employee/personal-information-section";
 import GovernmentInformationFormSection from "../../components/employee/goverment-information-section";
@@ -32,16 +32,18 @@ export function CreateEmployee() {
   const { mutate } = useCreateEmployee();
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    form.removeErrors();
     const response = await mutate(form.data);
     if (response.status === StatusCodes.OK) {
       alert("success!");
+      form.removeErrors();
+      form.resetForm();
     }
     const responseBody = await response.json();
     if (response.status === StatusCodes.BAD_REQUEST) {
       form.setErrors(responseBody?.errors ?? {});
     }
   };
-
   return (
     <Card className="max-w-6xl mx-auto mt-10">
       <h1 className="font-bold text-2xl">New Employee</h1>
