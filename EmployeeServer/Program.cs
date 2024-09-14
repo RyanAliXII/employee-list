@@ -3,16 +3,17 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-//make camel case the default key of json responses.
-builder.Services.AddControllers(options=>{
+/* 
+ Add services to the container.
+ Make camel case the default key of json responses.
+*/
+builder.Services.AddControllersWithViews(options=>{
     options.ModelMetadataDetailsProviders.Add(new SystemTextJsonValidationMetadataProvider());
 }).AddJsonOptions(options=>{
     options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
     options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
 });
-//configure cors to accept request from specific origin and allow specific headers
+//Configure cors to accept request from specific origin and allow specific headers
 var corsPolicyName = "FrontEndCors";
 builder.Services.AddCors(options =>
 {

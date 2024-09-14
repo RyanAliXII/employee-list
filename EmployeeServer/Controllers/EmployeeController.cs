@@ -1,3 +1,5 @@
+using System.Net;
+using EmployeeServer.Extensions;
 using EmployeeServer.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +19,13 @@ public class EmployeeController : Controller{
     [HttpPost]
     [Route("/api/employees/")]
     public IActionResult Create([FromBody]EmployeeViewModel employeeVM){
-        _logger.LogInformation(employeeVM.GivenName);
+
+        if(!ModelState.IsValid){
+           return BadRequest(new {
+              status = HttpStatusCode.BadRequest,
+              errors = ModelState.ToValidationErrors()
+           });
+        }
         return Json(new {
            employee = employeeVM,
         });

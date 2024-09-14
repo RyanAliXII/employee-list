@@ -16,10 +16,10 @@ public class EmployeeViewModel{
     [Required(ErrorMessage = "Surname is required")]
     public string? Surname { get; set; }
 
-    [JsonPropertyName("dateOfBirth")]
-    [Required(ErrorMessage = "Date of birth is required")]
-    [DataType(DataType.Date)]
-    public DateTime? DateOfBirth { get; set; }
+    // [JsonPropertyName("dateOfBirth")]
+    // [Required(ErrorMessage = "Date of birth is required")]
+    // [DataType(DataType.Date)]
+    // public DateTime? DateOfBirth { get; set; }
 
     [JsonPropertyName("address")]
     [Required(ErrorMessage = "Address is required")]
