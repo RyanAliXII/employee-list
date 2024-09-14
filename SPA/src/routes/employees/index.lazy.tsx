@@ -1,13 +1,13 @@
 import { createLazyFileRoute, Link } from "@tanstack/react-router";
 import { Button, Card, Modal, Table } from "flowbite-react";
-import { useEmployees } from "../../hooks/data/use-employees";
-import { useToggle } from "../../hooks/use-toggle";
+import { useEmployees } from "#hooks/data/use-employees";
+import { useToggle } from "#hooks/use-toggle";
 import { useState } from "react";
 import { StatusCodes } from "http-status-codes";
-import { useDeleteEmployee } from "../../hooks/data/use-delete-employee";
-import ViewEmployeeModal from "../../components/employee/view-employee-modal";
+import { useDeleteEmployee } from "#hooks/data/use-delete-employee";
+import ViewEmployeeModal from "#components/employee/view-employee-modal";
 import { InferType } from "yup";
-import { employeeSchema } from "../../schema/employee";
+import { employeeSchema } from "#schema/employee";
 import { toast } from "react-toastify";
 export const Route = createLazyFileRoute("/employees/")({
   component: Employees,
@@ -20,11 +20,11 @@ function Employees() {
   const [selectedEmployee, setSelectedEmployee] = useState<
     InferType<typeof employeeSchema>
   >({
-    id: "", // Empty string for UUID
+    id: "",
     givenName: "",
     middleName: "",
     surname: "",
-    dateOfBirth: new Date(), // Date can be null or a default date
+    dateOfBirth: new Date(),
     address: "",
     ssNumber: "",
     tin: "",
@@ -32,7 +32,7 @@ function Employees() {
     philhealthNumber: "",
     mobileNumber: "",
     email: "",
-    createdAt: new Date(), // Date can be null or a default date
+    createdAt: new Date(),
   });
   const { mutate } = useDeleteEmployee();
   const deleteEmployee = async () => {

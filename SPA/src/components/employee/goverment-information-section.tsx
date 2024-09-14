@@ -1,7 +1,7 @@
 import { Label, TextInput } from "flowbite-react";
 import { InferType } from "yup";
-import { mutateEmployeeSchema } from "../../schema/employee";
-import { UseForm } from "../../hooks/use-form";
+import { mutateEmployeeSchema } from "#schema/employee";
+import { UseForm } from "#hooks/use-form";
 
 function GovernmentIndataationdataSection({
   data,

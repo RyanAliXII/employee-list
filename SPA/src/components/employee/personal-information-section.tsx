@@ -1,8 +1,8 @@
 import { Datepicker, Label, Textarea, TextInput } from "flowbite-react";
-import { UseForm } from "../../hooks/use-form";
+import { UseForm } from "#hooks/use-form";
 import { InferType } from "yup";
-import { mutateEmployeeSchema } from "../../schema/employee";
-import { toReadableDate } from "../../utils/date";
+import { mutateEmployeeSchema } from "#schema/employee";
+import { toReadableDate } from "#utils/date";
 function PersonalInformationFormSection({
   data,
   handleInput,

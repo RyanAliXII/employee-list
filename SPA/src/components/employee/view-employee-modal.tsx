@@ -7,8 +7,8 @@ import {
   TextInput,
 } from "flowbite-react";
 import { InferType } from "yup";
-import { employeeSchema } from "../../schema/employee";
-import { toReadableDate } from "../../utils/date";
+import { employeeSchema } from "#schema/employee";
+import { toReadableDate } from "#utils/date";
 
 interface ViewModalProps extends ModalProps {
   employee: InferType<typeof employeeSchema>;

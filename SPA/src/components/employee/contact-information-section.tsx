@@ -1,7 +1,7 @@
 import { Label, TextInput } from "flowbite-react";
-import { UseForm } from "../../hooks/use-form";
+import { UseForm } from "#hooks/use-form";
 import { InferType } from "yup";
-import { mutateEmployeeSchema } from "../../schema/employee";
+import { mutateEmployeeSchema } from "#schema/employee";
 
 function ContactInformationFormSection({
   data,

@@ -1,15 +1,15 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { Button, Card, HR } from "flowbite-react";
-import useForm from "../../../hooks/use-form";
-import PersonalInformationFormSection from "../../../components/employee/personal-information-section";
-import GovernmentInformationFormSection from "../../../components/employee/goverment-information-section";
-import ContactInformationFormSection from "../../../components/employee/contact-information-section";
+import useForm from "#hooks/use-form";
+import PersonalInformationFormSection from "#components/employee/personal-information-section";
+import GovernmentInformationFormSection from "#components/employee/goverment-information-section";
+import ContactInformationFormSection from "#components/employee/contact-information-section";
 import { StatusCodes } from "http-status-codes";
 import { FormEvent } from "react";
 import { InferType } from "yup";
-import { mutateEmployeeSchema } from "../../../schema/employee";
-import { useEmployee } from "../../../hooks/data/use-employee";
-import { useUpdateEmployee } from "../../../hooks/data/use-update-employee";
+import { mutateEmployeeSchema } from "#schema/employee";
+import { useEmployee } from "#hooks/data/use-employee";
+import { useUpdateEmployee } from "#hooks/data/use-update-employee";
 import { toast } from "react-toastify";
 export const Route = createLazyFileRoute("/employees/$id/edit")({
   component: EditEmployee,
