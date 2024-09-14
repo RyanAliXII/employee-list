@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  mssql_22.04:
+    container_name: mssql_22.04
+    image: mcr.microsoft.com/mssql/server:2022-CU11-ubuntu-22.04
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./mssql_data:/var/opt/mssql/data
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: 4Ps02MGHZRXMphc
