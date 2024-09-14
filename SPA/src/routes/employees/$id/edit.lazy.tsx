@@ -10,7 +10,7 @@ import { InferType } from "yup";
 import { mutateEmployeeSchema } from "../../../schema/employee";
 import { useEmployee } from "../../../hooks/data/use-employee";
 import { useUpdateEmployee } from "../../../hooks/data/use-update-employee";
-
+import { toast } from "react-toastify";
 export const Route = createLazyFileRoute("/employees/$id/edit")({
   component: EditEmployee,
 });
@@ -32,7 +32,7 @@ export function EditEmployee() {
       email: "",
     },
   });
-  useEmployee({
+  const { employee } = useEmployee({
     id,
     onSuccess: (employee) => {
       form.setData(() => ({ ...employee }));
@@ -44,15 +44,24 @@ export function EditEmployee() {
     form.removeErrors();
     const response = await mutate(form.data, id);
     if (response.status === StatusCodes.OK) {
-      alert("success!");
+      toast.success("Employee has been updated.");
       form.removeErrors();
     }
     const responseBody = await response.json();
     if (response.status === StatusCodes.BAD_REQUEST) {
       form.setErrors(responseBody?.errors ?? {});
     }
+    if (response.status >= StatusCodes.INTERNAL_SERVER_ERROR) {
+      toast.error("Unknown error occured.");
+    }
   };
-
+  if ((employee?.id.length ?? 0) === 0) {
+    return (
+      <Card>
+        <h1>Employee not found</h1>
+      </Card>
+    );
+  }
   return (
     <Card className="max-w-6xl mx-auto mt-10">
       <h1 className="font-bold text-2xl">Edit Employee</h1>

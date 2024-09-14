@@ -8,7 +8,7 @@ import { useDeleteEmployee } from "../../hooks/data/use-delete-employee";
 import ViewEmployeeModal from "../../components/employee/view-employee-modal";
 import { InferType } from "yup";
 import { employeeSchema } from "../../schema/employee";
-
+import { toast } from "react-toastify";
 export const Route = createLazyFileRoute("/employees/")({
   component: Employees,
 });
@@ -39,8 +39,11 @@ function Employees() {
     confirmDeleteModalToggler.toggle();
     const response = await mutate(selectedEmployee.id);
     if (response.status === StatusCodes.OK) {
-      alert("success!");
       reload();
+      toast.success("Employee deleted successfully");
+    }
+    if (response.status >= StatusCodes.BAD_REQUEST) {
+      toast.error("Employee deleted successfully");
     }
   };
   return (

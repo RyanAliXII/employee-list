@@ -9,6 +9,7 @@ import { StatusCodes } from "http-status-codes";
 import PersonalInformationFormSection from "../../components/employee/personal-information-section";
 import GovernmentInformationFormSection from "../../components/employee/goverment-information-section";
 import ContactInformationFormSection from "../../components/employee/contact-information-section";
+import { toast } from "react-toastify";
 export const Route = createLazyFileRoute("/employees/create")({
   component: CreateEmployee,
 });
@@ -35,13 +36,16 @@ export function CreateEmployee() {
     form.removeErrors();
     const response = await mutate(form.data);
     if (response.status === StatusCodes.OK) {
-      alert("success!");
+      toast.success("Employee has been added.");
       form.removeErrors();
       form.resetForm();
     }
     const responseBody = await response.json();
     if (response.status === StatusCodes.BAD_REQUEST) {
       form.setErrors(responseBody?.errors ?? {});
+    }
+    if (response.status >= StatusCodes.INTERNAL_SERVER_ERROR) {
+      toast.error("Unknown error occured.");
     }
   };
   return (

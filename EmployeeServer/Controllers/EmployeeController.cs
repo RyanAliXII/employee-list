@@ -1,4 +1,3 @@
-using System.Net;
 using EmployeeServer.Extensions;
 using EmployeeServer.Models;
 using EmployeeServer.Repositories;
