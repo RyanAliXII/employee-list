@@ -1,5 +1,6 @@
 using System.Net;
 using EmployeeServer.Extensions;
+using EmployeeServer.Repositories;
 using EmployeeServer.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,8 +8,10 @@ namespace EmployeeServer.Controllers;
 
 public class EmployeeController : Controller{
     protected ILogger<EmployeeController> _logger;
-    public EmployeeController(ILogger<EmployeeController> logger){
+    protected IEmployeeRepository _employeeRepo;
+    public EmployeeController(ILogger<EmployeeController> logger, IEmployeeRepository employeeRepo){
         _logger = logger;
+        _employeeRepo = employeeRepo;
     }
     [Route("/api/employees/")]
     public IActionResult Index(){

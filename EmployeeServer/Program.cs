@@ -1,5 +1,6 @@
 using System.Text.Json;
 using EmployeeServer.Data;
+using EmployeeServer.Repositories;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +18,7 @@ builder.Services.AddControllersWithViews(options=>{
 });
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 //Configure cors to accept request from specific origin and allow specific headers
 var corsPolicyName = "FrontEndCors";
 builder.Services.AddCors(options =>
