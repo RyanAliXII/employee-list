@@ -1,11 +1,12 @@
 import { InferType } from "yup";
-import { mutateEmployeeSchema } from "../../schema/employee";
-import { toISODateStr } from "../../utils/date";
+import { mutateEmployeeSchema } from "#schema/employee";
+import { toISODateStr } from "#utils/date";
+import { serverRequest } from "#utils/http";
 
 export const useCreateEmployee = () => {
   const mutate = async (form: InferType<typeof mutateEmployeeSchema>) => {
     const body = mutateEmployeeSchema.cast(form);
-    const response = await fetch("http://localhost:5171/api/employees", {
+    const response = await serverRequest("/api/employees", {
       method: "POST",
       body: JSON.stringify({
         ...body,

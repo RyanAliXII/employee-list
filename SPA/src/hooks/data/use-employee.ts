@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { employeeSchema } from "../../schema/employee";
 import { InferType } from "yup";
 import { StatusCodes } from "http-status-codes";
+import { serverRequest } from "#utils/http";
 
 type UseEmployeeConfig = {
   id: string;
@@ -20,7 +21,7 @@ export const useEmployee = ({
     typeof employeeSchema
   > | null>();
   const load = async () => {
-    const response = await fetch(`http://localhost:5171/api/employees/${id}`);
+    const response = await serverRequest(`/api/employees/${id}`);
     const data = await response.json();
 
     if (
