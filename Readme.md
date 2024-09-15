@@ -22,7 +22,7 @@ Before setting up the project, make sure to install the following:
 
 - [.NET SDK 8.0.200](https://dotnet.microsoft.com/download)
 - [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) or an existing MSSQL instance
-- [Visual Studio](https://visualstudio.microsoft.com/) or any preferred IDE for .NET development
+- [Visual Studio Code](https://code.visualstudio.com/), [Visual Studio](https://visualstudio.microsoft.com/) or any preferred IDE for .NET development
 - [Node.js 20.13.1](https://nodejs.org/en/download/package-manager/current)
 
 ## What I Have Used:
@@ -150,3 +150,26 @@ Before setting up the project, make sure to install the following:
 
    - Open your web browser and navigate to the URL provided by the application to ensure it’s working as expected.
    - You should see the initial page of the Employee List Application.
+
+## Running the Test
+
+1. **Navigate to the Test Directory**:
+
+   - Open your terminal or command prompt.
+   - Change directory to the `EmployeeServerTest` folder where your test project is located.
+
+2. **Run the Tests**:
+
+   - Execute the following command to run all tests:
+
+     ```bash
+     dotnet test
+     ```
+
+   - For more detailed output, you can use:
+
+     ```bash
+     dotnet test -l "console;verbosity=normal"
+     ```
+
+   - This command will provide more verbose information during the test execution, which can help in debugging any issues
