@@ -184,7 +184,7 @@ namespace EmployeeServerTest
             Assert.IsType<OkObjectResult>(result);
         }
         [Fact]
-        public async Task Update_ReturnBadResultIfGuidIsEmpty()
+        public async Task Update_ReturnNotFoundResultIfIdIsEmpty()
         {
             var mockEmployeeRepo = new Mock<IEmployeeRepository>();
             var mockLogger = new Mock<ILogger<EmployeeController>>();
@@ -258,7 +258,7 @@ namespace EmployeeServerTest
             Assert.IsType<OkObjectResult>(result);
         }
         [Fact]
-        public async Task Delete_ReturnNotFoundIfGuidIsEmpty()
+        public async Task Delete_ReturnNotFoundIfIdIsEmpty()
         {
             var mockEmployeeRepo = new Mock<IEmployeeRepository>();
             var mockLogger = new Mock<ILogger<EmployeeController>>();
