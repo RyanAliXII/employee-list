@@ -95,7 +95,7 @@ Before setting up the project, make sure to install the following:
    - Run the following command to start the application with live reloading enabled:
 
      ```bash
-     dotnet watch run
+     dotnet watch
      ```
 
    - This command will compile and start the application. The `dotnet watch` command monitors changes in your source files and automatically restarts the application when changes are detected.
